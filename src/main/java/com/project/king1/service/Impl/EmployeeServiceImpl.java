@@ -1,4 +1,4 @@
-package com.project.king1.service;
+package com.project.king1.service.Impl;
 
 
 import java.util.List;
@@ -9,6 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.project.king1.dao.EmployeeDAO;
 import com.project.king1.model.Employee;
+import com.project.king1.service.EmployeeService;
 
 
 @Service

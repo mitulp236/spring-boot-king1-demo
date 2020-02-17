@@ -1,4 +1,4 @@
-package com.project.king1.dao;
+package com.project.king1.dao.Impl;
 
 import java.util.List;
 
@@ -9,39 +9,40 @@ import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import com.project.king1.model.Employee;
+import com.project.king1.dao.UserDAO;
+import com.project.king1.model.User;
 
 @Repository
-public class EmployeeDAOImpl implements EmployeeDAO{
-	
+public class UserDAOImpl implements UserDAO{
+
 	@Autowired
 	private EntityManager entityManager;
-
+	
 	@Override
-	public List<Employee> get() {
+	public List<User> get() {
 		Session currentSession = entityManager.unwrap(Session.class);
-		Query<Employee> query = currentSession.createQuery("from Employee",Employee.class);
-		List<Employee> list = query.getResultList();
+		Query<User> query = currentSession.createQuery("from User",User.class);
+		List<User> list = query.getResultList();
 		return list;
 	}
 
 	@Override
-	public Employee get(int id) {
+	public User get(int id) {
 		Session currentSession = entityManager.unwrap(Session.class);
-		return currentSession.get(Employee.class, id);
+		return currentSession.get(User.class, id);
 	}
 
 	@Override
-	public void save(Employee employee) {
+	public void save(User user) {
 		Session currentSession = entityManager.unwrap(Session.class);
-		currentSession.saveOrUpdate(employee);
+		currentSession.saveOrUpdate(user);
 	}
 
 	@Override
 	public void delete(int id) {
 		Session currentSession = entityManager.unwrap(Session.class);
-		Employee employee = currentSession.get(Employee.class, id);
-		currentSession.delete(employee);
+		User affectedUser = currentSession.get(User.class, id);
+		currentSession.remove(affectedUser);		
 	}
 
 }

@@ -9,6 +9,4 @@ public class King1Application {
 	public static void main(String[] args) {
 		SpringApplication.run(King1Application.class, args);
 	}
-	
 }
-	
