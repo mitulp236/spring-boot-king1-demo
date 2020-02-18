@@ -33,9 +33,13 @@ public class UserDAOImpl implements UserDAO{
 	}
 
 	@Override
-	public void save(User user) {
-		Session currentSession = entityManager.unwrap(Session.class);
-		currentSession.saveOrUpdate(user);
+	public User save(User user) {
+		if(user != null) {
+			Session currentSession = entityManager.unwrap(Session.class);
+			currentSession.saveOrUpdate(user);
+			return user;
+		}
+		return null;
 	}
 
 	@Override

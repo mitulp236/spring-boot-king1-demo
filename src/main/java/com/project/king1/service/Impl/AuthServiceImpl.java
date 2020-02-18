@@ -29,9 +29,9 @@ public class AuthServiceImpl implements AuthService{
 				return ResponseEntity.status(HttpStatus.OK).body(res);
 			}
 		}
-		//wrong email
+		//wrong email or password
 		res.setMessage("Wrong email or password !");
-		return ResponseEntity.status(403).body(res);
+		return ResponseEntity.status(HttpStatus.FORBIDDEN).body(res);
 	}
 	
 	

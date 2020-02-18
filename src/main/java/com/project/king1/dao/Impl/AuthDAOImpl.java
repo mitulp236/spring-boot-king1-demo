@@ -18,8 +18,8 @@ public class AuthDAOImpl implements AuthDAO{
 	
 	@Override
 	public User login(User user) {
+		//create currentSession object
 		Session currentSession = entityManager.unwrap(Session.class);
-//		User affectedUser = currentSession.find(User.class, user.getEmail());
 		User affectedUser;
 		try {
 			affectedUser = currentSession.createQuery("from User where email= :email and password= :password",User.class).setParameter("email", user.getEmail()).setParameter("password", user.getPassword()).getSingleResult();
@@ -29,5 +29,4 @@ public class AuthDAOImpl implements AuthDAO{
 		}
 		return affectedUser;
 	}
-
 }

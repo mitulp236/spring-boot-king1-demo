@@ -11,7 +11,7 @@ public interface UserDAO {
 	 //for get specific user
 	 User get(int id);
 	 //for add or update user
-	 void save(User user);
+	 User save(User user);
 	 //for delete the user
 	 void delete(int id);
 }

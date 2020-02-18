@@ -10,7 +10,9 @@ public interface UserService {
 	//for get specific user
 	User get(int id);
 	//for save or update user
-	void save(User user);
+	User save(User user);
+	//for update or update user
+	User update(User user);
 	//for delete specific user
 	void delete(int id);
 }

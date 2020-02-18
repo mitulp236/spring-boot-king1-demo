@@ -9,6 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.project.king1.dao.UserDAO;
 import com.project.king1.model.User;
 import com.project.king1.service.UserService;
+import com.project.king1.utils.SendEmail;
 
 @Service
 public class UserServiceImpl implements UserService{
@@ -28,12 +29,31 @@ public class UserServiceImpl implements UserService{
 		return userDao.get(id);
 	}
 
+	@Autowired
+	private SendEmail mail;
+	
+//	@Transactional
+	@Override
+	public User save(User user) {
+		User usr = userDao.save(user);
+		if(usr != null) {
+			String message = "Hello "+user.getName()+" ! Welcome to Java World";
+			mail.sendEmail(message,"[From] Gateway java Corporation Head",user.getEmail());
+			return user;
+		}
+		return null;
+	}
+	
 	@Transactional
 	@Override
-	public void save(User user) {
-		userDao.save(user);
+	public User update(User user) {
+		User usr = userDao.save(user);
+		if(usr != null) {
+			return user;
+		}
+		return null;
 	}
-
+	
 	@Transactional
 	@Override
 	public void delete(int id) {
